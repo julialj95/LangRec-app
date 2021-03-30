@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ResultItem from "./ResultItem";
 import config from "./config";
 
 class RecsPage extends Component {
@@ -19,6 +20,27 @@ class RecsPage extends Component {
     });
   };
 
+  displayResults = (data) => {
+    const results = data.map((result) => {
+      return (
+        <ResultItem
+          key={result.id}
+          id={result.id}
+          title={result.title}
+          image_link={result.image_link}
+          language={result.language}
+          level={result.level}
+          type={result.type}
+          rating={result.type}
+          url={result.url}
+          description={result.description}
+          cost={result.cost}
+        />
+      );
+    });
+    return results;
+  };
+
   getRecommendations = (e) => {
     e.preventDefault();
     const { language, type, level, cost } = this.state;
@@ -36,6 +58,7 @@ class RecsPage extends Component {
         }
         return response.json();
       })
+      .then((data) => displayResults(data))
       .catch((error) => console.error({ error }));
   };
 
@@ -134,6 +157,10 @@ class RecsPage extends Component {
 
           <button type="submit">Get Recs!</button>
         </form>
+        <div>
+          <h1>Results</h1>
+          <div>{results ? results : null}</div>
+        </div>
       </div>
     );
   }
