@@ -19,12 +19,12 @@ class RecsPage extends Component {
     });
   };
 
-  getRecommendations = () => {
+  getRecommendations = (e) => {
+    e.preventDefault();
     const { language, type, level, cost } = this.state;
-    const baseUrl = config.API_ENDPOINT;
-    const params = `?language=${language}&type=${type}&level=${level}&cost=${cost}`;
-    fetch(`${baseUrl}/recs/${params}`, {
-      method: GET,
+    const baseUrl = config.API_BASE_URL;
+    const params = `?language=${language}&level=${level}&type=${type}&cost=${cost}`;
+    fetch(`${baseUrl}/resources/recs${params}`, {
       headers: {
         "content-type": "application/json",
         Authorization: "Bearer " + config.API_KEY,
@@ -47,7 +47,7 @@ class RecsPage extends Component {
           Enter your information to receive the highest rated resources that fit
           your needs!
         </h3>
-        <form onSubmit={this.getRecommendations}>
+        <form onSubmit={(e) => this.getRecommendations(e)}>
           <label htmlFor="language">
             Language
             <select name="language" onChange={(e) => this.handleChange(e)}>
