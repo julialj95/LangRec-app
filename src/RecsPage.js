@@ -10,6 +10,7 @@ class RecsPage extends Component {
       type: "",
       level: "",
       cost: "",
+      results: [],
     };
   }
 
@@ -31,14 +32,14 @@ class RecsPage extends Component {
           language={result.language}
           level={result.level}
           type={result.type}
-          rating={result.type}
+          rating={result.rating}
           url={result.url}
           description={result.description}
           cost={result.cost}
         />
       );
     });
-    return results;
+    this.setState({ results });
   };
 
   getRecommendations = (e) => {
@@ -58,7 +59,7 @@ class RecsPage extends Component {
         }
         return response.json();
       })
-      .then((data) => displayResults(data))
+      .then((data) => this.displayResults(data))
       .catch((error) => console.error({ error }));
   };
 
@@ -93,10 +94,10 @@ class RecsPage extends Component {
             Resource Type
             <select name="type" onChange={(e) => this.handleChange(e)}>
               <option value={null}>Select Type...</option>
-              <option value="textbook">Textbook</option>
-              <option value="storybook">Storybook</option>
-              <option value="class">Class</option>
-              <option value="website">Website</option>
+              <option value="Textbook">Textbook</option>
+              <option value="Storybook">Storybook</option>
+              <option value="Class">Class</option>
+              <option value="Website">Website</option>
               <option value="other">Other</option>
             </select>
           </label>
@@ -109,7 +110,7 @@ class RecsPage extends Component {
               type="radio"
               id="beginner"
               name="level"
-              value="beginner"
+              value="Beginner"
               onChange={(e) => this.handleChange(e)}
             />
             <label htmlFor="beginner">Beginner</label>
@@ -118,7 +119,7 @@ class RecsPage extends Component {
               type="radio"
               id="intermediate"
               name="level"
-              value="intermediate"
+              value="Intermediate"
               onChange={(e) => this.handleChange(e)}
             />
             <label htmlFor="intermediate">Intermediate</label>
@@ -127,7 +128,7 @@ class RecsPage extends Component {
               type="radio"
               id="advanced"
               name="level"
-              value="advanced"
+              value="Advanced"
               onChange={(e) => this.handleChange(e)}
             />
             <label htmlFor="advanced">Advanced</label>
@@ -159,7 +160,7 @@ class RecsPage extends Component {
         </form>
         <div>
           <h1>Results</h1>
-          <div>{results ? results : null}</div>
+          <div>{this.state.results ? this.state.results : null}</div>
         </div>
       </div>
     );
