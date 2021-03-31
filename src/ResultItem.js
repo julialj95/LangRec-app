@@ -1,4 +1,5 @@
 import React from "react";
+import TokenService from "./services/token-service";
 
 function ResultItem(props) {
   return (
@@ -6,7 +7,7 @@ function ResultItem(props) {
       <h3>
         {props.id}. {props.title}
       </h3>
-      <img src={props.image_link} alt="resource cover" />
+      <img src={props.image_link} alt="resource cover display" />
       <h4>Lanuage: {props.lanugage}</h4>
       <h4>Level: {props.level}</h4>
       <h4>Type: {props.type} </h4>
@@ -16,7 +17,15 @@ function ResultItem(props) {
       <a href={props.url}>{props.url}</a>
       <h4>About this resource: </h4>
       <p> {props.description} </p>
+      {TokenService.hasAuthToken() ? (
+        <button>Add to My Favorites</button>
+      ) : (
+        <p>
+          <b>**Sign up or Log In to save this resource to your list!</b>
+        </p>
+      )}
     </div>
+    // onClick={this.handleSaveResource}
   );
 }
 
