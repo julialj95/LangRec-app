@@ -6,7 +6,6 @@ const AuthorizationApiService = {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization: "Bearer " + config.API_KEY,
       },
       body: JSON.stringify(credentials),
     }).then((res) =>

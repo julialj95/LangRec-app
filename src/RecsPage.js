@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ResultItem from "./ResultItem";
+import TokenService from "./services/token-service";
 import config from "./config";
 
 class RecsPage extends Component {
@@ -24,22 +25,48 @@ class RecsPage extends Component {
   displayResults = (data) => {
     const results = data.map((result) => {
       return (
-        <ResultItem
-          key={result.id}
-          id={result.id}
-          title={result.title}
-          image_link={result.image_link}
-          language={result.language}
-          level={result.level}
-          type={result.type}
-          rating={result.rating}
-          url={result.url}
-          description={result.description}
-          cost={result.cost}
-        />
+        <div>
+          <ResultItem
+            key={result.id}
+            id={result.id}
+            title={result.title}
+            image_link={result.image_link}
+            language={result.language}
+            level={result.level}
+            type={result.type}
+            rating={result.rating}
+            url={result.url}
+            description={result.description}
+            cost={result.cost}
+          />
+          <button
+            key={result.title}
+            value={result.id}
+            onClick={(e) => this.saveAResource(e)}
+          >
+            Favorite!
+          </button>
+        </div>
       );
     });
     this.setState({ results });
+  };
+
+  saveAResource = (e) => {
+    e.preventDefault();
+    const resource_id = e.target.value;
+    fetch(`${config.API_BASE_URL}/resources/recs`, {
+      method: "POST",
+      body: JSON.stringify({ resource_id }),
+      headers: {
+        "content-type": "application/json",
+        Authorization: "Bearer " + TokenService.getAuthToken(),
+      },
+    })
+      .then((res) =>
+        !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+      )
+      .catch((error) => console.error({ error }));
   };
 
   getRecommendations = (e) => {
@@ -50,7 +77,7 @@ class RecsPage extends Component {
     fetch(`${baseUrl}/resources/recs${params}`, {
       headers: {
         "content-type": "application/json",
-        Authorization: "Bearer " + config.API_KEY,
+        Authorization: "Bearer " + TokenService.getAuthToken(),
       },
     })
       .then((response) => {
