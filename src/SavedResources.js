@@ -13,9 +13,8 @@ class SavedResources extends Component {
     };
   }
 
-  displayResults = (data) => {
-    console.log(data);
-    const results = data.map((result) => {
+  displayResults = () => {
+    const results = this.state.results.map((result) => {
       return (
         <div>
           <ResultItem
@@ -33,19 +32,38 @@ class SavedResources extends Component {
           />
           <button
             value={result.id}
-            key={result.url}
-            onClick={this.removeFromFavorites}
+            key={result.title + result.id}
+            onClick={this.deleteFromFavorites}
           >
             Remove resource from favorites
           </button>
         </div>
       );
     });
-    this.setState({ results });
-    return results;
+
+    if (this.state.results.length === 0) {
+      return (
+        <div>
+          <h3>You have no saved resources.</h3>
+          <h3>
+            Search through resource recommendations and find resources to save!
+          </h3>
+        </div>
+      );
+    } else {
+      return results;
+    }
   };
 
-  removeFromFavorites = (e) => {
+  removeResourceFromState = (resource_id) => {
+    const newResults = this.state.results.filter((resource) => {
+      return resource.id !== resource_id;
+    });
+    console.log(newResults);
+    this.setState({ results: newResults });
+  };
+
+  deleteFromFavorites = (e) => {
     e.preventDefault();
     const resource_id = e.target.value;
     fetch(`${config.API_BASE_URL}/resources/saved-resources/${resource_id}`, {
@@ -57,10 +75,9 @@ class SavedResources extends Component {
     })
       .then((res) => {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
-        const newResults = this.state.results.filter(
-          (resource) => resource.id !== resource_id
-        );
-        this.setState({ results: newResults });
+      })
+      .then(() => {
+        this.removeResourceFromState(resource_id);
       })
       .catch((error) => console.error(error));
   };
@@ -79,16 +96,16 @@ class SavedResources extends Component {
         return response.json();
       })
       .then((data) => {
-        this.displayResults(data);
+        this.setState({ results: data });
       })
       .catch((error) => console.error({ error }));
   }
 
   render() {
     return (
+      // <div>
       <div>
-        <div>
-          {this.state.results.length === 0 ? (
+        {/* {this.state.results.length === 0 ? (
             <div>
               <h3>You have no saved resources.</h3>
               <h3>
@@ -96,10 +113,10 @@ class SavedResources extends Component {
                 save!
               </h3>
             </div>
-          ) : (
-            this.state.results
-          )}
-        </div>
+          ) : ( */}
+        {this.displayResults()}
+        {/* )}
+        </div> */}
       </div>
     );
   }

@@ -17,48 +17,58 @@ class App extends React.Component {
     super(props);
     this.state = {
       user: {},
-      loggedIn: false,
+      isLoggedIn: false,
+      savedResourceIds: [],
+      recommendedResources: [],
     };
   }
 
-  changeLoginStatus = () => {
+  changeLoginStatus = (param) => {
+    this.setState({ isLoggedIn: param });
+  };
+
+  handleSaveResource = (resource_id) => {
     this.setState((prevState) => {
-      return { loggedIn: !prevState };
+      return {
+        savedResourceIds: [...prevState.savedResourceIds, resource_id],
+      };
     });
   };
 
-  // componentDidMount() {
-  //   const { username } = fetch(`${config.API_BASE_URL}/users/${username}`, {
-  //     headers: {
-  //       "content-type": "application/json",
-  //       Authorization: "Bearer " + config.API_KEY,
-  //     },
-  //   })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         return response.json().then((event) => Promise.reject(event));
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((user) => this.setState({ user }))
-  //     .catch((error) => console.error({ error }));
-  // }
+  handleRecommendedResources = (recs) => {
+    this.setState({ recommendedResources: recs });
+  };
+
   render() {
-    const { user, loggedIn } = this.state;
+    const { user, isLoggedIn } = this.state;
     return (
       <LangrecContext.Provider
         value={{
           user: user,
-          loggedIn: loggedIn,
+          isLoggedIn: isLoggedIn,
           handleLoginChange: this.changeLoginStatus,
+          handleSaveResource: this.handleSaveResource,
+          savedResourceIds: this.state.savedResourceIds,
+          handleRecommendedResources: this.handleRecommendedResources,
+          recommendedResources: this.state.recommendedResources,
         }}
       >
         <Header />
         <NavBar />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/recs" component={RecsPage} />
-          <Route path="/share" component={SubmitResource} />
+          <Route
+            path="/recs"
+            component={() => {
+              return (
+                <RecsPage
+                // handleSaveResource={this.addSavedResourceId}
+                // savedResourceIds={this.state.savedResourceIds}
+                />
+              );
+            }}
+          />
+          /* <Route path="/share" component={SubmitResource} /> */
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/saved-resources" component={SavedResources} />

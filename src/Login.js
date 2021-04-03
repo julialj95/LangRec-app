@@ -35,7 +35,7 @@ class Login extends React.Component {
         username.value = "";
         password.value = "";
         TokenService.saveAuthToken(res.authToken);
-        this.context.handleLoginChange();
+        this.context.handleLoginChange(true);
         this.props.history.push("/saved-resources");
       })
       .catch((res) => {

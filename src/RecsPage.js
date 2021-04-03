@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import ResultItem from "./ResultItem";
 import TokenService from "./services/token-service";
 import config from "./config";
+import { LangrecContext } from "./LangrecContext";
 
 class RecsPage extends Component {
+  static contextType = LangrecContext;
   constructor() {
     super();
     this.state = {
@@ -12,6 +15,9 @@ class RecsPage extends Component {
       level: "",
       cost: "",
       results: [],
+      error: "",
+      savedResourceIds: [],
+      addedToFavorites: false,
     };
   }
 
@@ -19,11 +25,16 @@ class RecsPage extends Component {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
+      error: "",
     });
   };
 
-  displayResults = (data) => {
-    const results = data.map((result) => {
+  displayResults = () => {
+    const results = this.context.recommendedResources.map((result) => {
+      const isFavorited =
+        this.context.savedResourceIds.filter((resource) => {
+          return Number(resource) === result.id;
+        }).length > 0;
       return (
         <div>
           <ResultItem
@@ -40,21 +51,24 @@ class RecsPage extends Component {
             cost={result.cost}
           />
           <button
-            key={result.title}
+            key={result.title + result.id}
             value={result.id}
-            onClick={(e) => this.saveAResource(e)}
+            disabled={!this.context.isLoggedIn || isFavorited ? true : false}
+            onClick={() => this.saveAResource(result.id)}
           >
             Favorite!
           </button>
+
+          {isFavorited ? (
+            <Link to="/saved-resources">View in Saved Resources List</Link>
+          ) : null}
         </div>
       );
     });
-    this.setState({ results });
+    return results;
   };
 
-  saveAResource = (e) => {
-    e.preventDefault();
-    const resource_id = e.target.value;
+  saveAResource = (resource_id) => {
     fetch(`${config.API_BASE_URL}/resources/recs`, {
       method: "POST",
       body: JSON.stringify({ resource_id }),
@@ -63,9 +77,15 @@ class RecsPage extends Component {
         Authorization: "Bearer " + TokenService.getAuthToken(),
       },
     })
-      .then((res) =>
-        !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
-      )
+      .then((res) => {
+        if (!res.ok) {
+          res.json().then((e) => Promise.reject(e));
+        } else {
+          this.context.handleSaveResource(resource_id);
+
+          res.json();
+        }
+      })
       .catch((error) => console.error({ error }));
   };
 
@@ -77,17 +97,21 @@ class RecsPage extends Component {
     fetch(`${baseUrl}/resources/recs${params}`, {
       headers: {
         "content-type": "application/json",
-        Authorization: "Bearer " + TokenService.getAuthToken(),
+        // Authorization: "Bearer " + TokenService.getAuthToken(),
       },
     })
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((event) => Promise.reject(event));
+      .then((recs) => {
+        if (!recs.ok) {
+          return recs.json().then((event) => Promise.reject(event));
         }
-        return response.json();
+        return recs.json();
       })
-      .then((data) => this.displayResults(data))
-      .catch((error) => console.error({ error }));
+      .then((data) => this.context.handleRecommendedResources(data))
+      .catch((error) => {
+        this.setState({
+          error: "Sorry! No resources match your requirements.",
+        });
+      });
   };
 
   render() {
@@ -185,9 +209,15 @@ class RecsPage extends Component {
 
           <button type="submit">Get Recs!</button>
         </form>
+
         <div>
-          <h1>Results</h1>
-          <div>{this.state.results ? this.state.results : null}</div>
+          {this.state.error ? <h2>{this.state.error}</h2> : null}
+          {this.context.recommendedResources.length === 0 ? null : (
+            <div>
+              <h1>Results</h1>
+              {this.displayResults()}
+            </div>
+          )}
         </div>
       </div>
     );

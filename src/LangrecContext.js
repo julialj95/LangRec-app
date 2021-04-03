@@ -2,8 +2,11 @@ import React from "react";
 
 const LangrecContext = React.createContext({
   user: {},
-  loggedIn: "",
+  isLoggedIn: false,
   changeLoginStatus: () => {},
+  handleSaveResource: () => {},
+  handleRecommendedResources: () => {},
+  savedResourceIds: [],
 });
 
 export { LangrecContext };

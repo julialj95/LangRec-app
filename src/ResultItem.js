@@ -26,7 +26,6 @@ function ResultItem(props) {
         </p>
       )}
     </div>
-    // onClick={this.handleSaveResource}
   );
 }
 
