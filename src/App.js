@@ -3,7 +3,6 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./HomePage";
 import RecsPage from "./RecsPage";
-import SubmitResource from "./SubmitResource";
 import Signup from "./Signup";
 import Login from "./Login";
 import Header from "./Header";
@@ -35,6 +34,13 @@ class App extends React.Component {
     });
   };
 
+  handleRemoveSavedResource = (resource_id) => {
+    const updatedSavedResourceIds = this.state.savedResourceIds.filter(
+      (id) => id.id !== resource_id
+    );
+    this.setState({ savedResourceIds: updatedSavedResourceIds });
+  };
+
   handleRecommendedResources = (recs) => {
     this.setState({ recommendedResources: recs });
   };
@@ -49,6 +55,7 @@ class App extends React.Component {
           handleLoginChange: this.changeLoginStatus,
           handleSaveResource: this.handleSaveResource,
           savedResourceIds: this.state.savedResourceIds,
+          handleRemoveSavedResource: this.handleRemoveSavedResource,
           handleRecommendedResources: this.handleRecommendedResources,
           recommendedResources: this.state.recommendedResources,
         }}
