@@ -68,7 +68,6 @@ class App extends React.Component {
               );
             }}
           />
-          /* <Route path="/share" component={SubmitResource} /> */
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/saved-resources" component={SavedResources} />
