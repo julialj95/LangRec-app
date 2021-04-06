@@ -16,8 +16,8 @@ class RecsPage extends Component {
       cost: "",
       results: [],
       error: "",
-      savedResourceIds: [],
-      addedToFavorites: false,
+      // savedResourceIds: [],
+      // addedToFavorites: false,
     };
   }
 
@@ -81,7 +81,7 @@ class RecsPage extends Component {
         if (!res.ok) {
           res.json().then((e) => Promise.reject(e));
         } else {
-          this.context.handleSaveResource(resource_id);
+          this.context.addSavedResource(resource_id);
 
           res.json();
         }

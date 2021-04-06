@@ -19,6 +19,7 @@ class App extends React.Component {
       isLoggedIn: false,
       savedResourceIds: [],
       recommendedResources: [],
+      savedResources: [],
     };
   }
 
@@ -26,7 +27,7 @@ class App extends React.Component {
     this.setState({ isLoggedIn: param });
   };
 
-  handleSaveResource = (resource_id) => {
+  addSavedResource = (resource_id) => {
     this.setState((prevState) => {
       return {
         savedResourceIds: [...prevState.savedResourceIds, resource_id],
@@ -34,11 +35,21 @@ class App extends React.Component {
     });
   };
 
-  handleRemoveSavedResource = (resource_id) => {
+  getSavedResources = (resources) => {
+    this.setState({ savedResources: resources });
+  };
+
+  removeSavedResourceId = (resource_id) => {
     const updatedSavedResourceIds = this.state.savedResourceIds.filter(
       (id) => id.id !== resource_id
     );
-    this.setState({ savedResourceIds: updatedSavedResourceIds });
+    const updatedSavedResources = this.state.savedResources.filter(
+      (resource) => resource.id !== resource_id
+    );
+    this.setState({
+      savedResourceIds: updatedSavedResourceIds,
+      savedResources: updatedSavedResources,
+    });
   };
 
   handleRecommendedResources = (recs) => {
@@ -53,9 +64,11 @@ class App extends React.Component {
           user: user,
           isLoggedIn: isLoggedIn,
           handleLoginChange: this.changeLoginStatus,
-          handleSaveResource: this.handleSaveResource,
+          addSavedResource: this.addSavedResource,
           savedResourceIds: this.state.savedResourceIds,
-          handleRemoveSavedResource: this.handleRemoveSavedResource,
+          getSavedResources: this.getSavedResources,
+          savedResources: this.state.savedResources,
+          removeSavedResourceId: this.removeSavedResourceId,
           handleRecommendedResources: this.handleRecommendedResources,
           recommendedResources: this.state.recommendedResources,
         }}

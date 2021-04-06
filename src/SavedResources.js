@@ -55,13 +55,13 @@ class SavedResources extends Component {
     }
   };
 
-  removeResourceFromState = (resource_id) => {
-    const newResults = this.state.results.filter((resource) => {
-      return resource.id !== resource_id;
-    });
-    console.log(newResults);
-    this.setState({ results: newResults });
-  };
+  // removeResourceFromState = (resource_id) => {
+  //   const newResults = this.state.results.filter((resource) => {
+  //     return resource.id !== resource_id;
+  //   });
+  //   console.log(newResults);
+  //   this.setState({ results: newResults });
+  // };
 
   deleteFromFavorites = (e) => {
     e.preventDefault();
@@ -77,7 +77,7 @@ class SavedResources extends Component {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
       })
       .then(() => {
-        this.removeResourceFromState(resource_id);
+        this.context.removesavedResourceId(resource_id);
       })
       .catch((error) => console.error(error));
   };
@@ -96,7 +96,8 @@ class SavedResources extends Component {
         return response.json();
       })
       .then((data) => {
-        this.setState({ results: data });
+        // this.setState({ results: data });
+        this.context.handleSavedResources(data);
       })
       .catch((error) => console.error({ error }));
   }

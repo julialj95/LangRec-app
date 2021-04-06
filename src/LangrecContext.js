@@ -4,7 +4,9 @@ const LangrecContext = React.createContext({
   user: {},
   isLoggedIn: false,
   changeLoginStatus: () => {},
-  handleSaveResource: () => {},
+  addSavedResource: () => {},
+  removeSavedResourceId: () => {},
+  getSavedResources: () => {},
   handleRecommendedResources: () => {},
   savedResourceIds: [],
 });
