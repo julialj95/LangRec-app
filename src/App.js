@@ -39,12 +39,13 @@ class App extends React.Component {
     this.setState({ savedResources: resources });
   };
 
-  removeSavedResourceId = (resource_id) => {
+  removeSavedResource = (resource_id) => {
     const updatedSavedResourceIds = this.state.savedResourceIds.filter(
-      (id) => id.id !== resource_id
+      (id) => id !== Number(resource_id)
     );
+
     const updatedSavedResources = this.state.savedResources.filter(
-      (resource) => resource.id !== resource_id
+      (resource) => resource.id !== Number(resource_id)
     );
     this.setState({
       savedResourceIds: updatedSavedResourceIds,
@@ -53,6 +54,9 @@ class App extends React.Component {
   };
 
   handleRecommendedResources = (recs) => {
+    if (recs.length === 0) {
+      this.setState({ recommendedResources: [] });
+    }
     this.setState({ recommendedResources: recs });
   };
 
@@ -68,7 +72,7 @@ class App extends React.Component {
           savedResourceIds: this.state.savedResourceIds,
           getSavedResources: this.getSavedResources,
           savedResources: this.state.savedResources,
-          removeSavedResourceId: this.removeSavedResourceId,
+          removeSavedResource: this.removeSavedResource,
           handleRecommendedResources: this.handleRecommendedResources,
           recommendedResources: this.state.recommendedResources,
         }}
@@ -77,17 +81,7 @@ class App extends React.Component {
         <NavBar />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route
-            path="/recs"
-            component={() => {
-              return (
-                <RecsPage
-                // handleSaveResource={this.addSavedResourceId}
-                // savedResourceIds={this.state.savedResourceIds}
-                />
-              );
-            }}
-          />
+          <Route path="/recs" component={RecsPage} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/saved-resources" component={SavedResources} />

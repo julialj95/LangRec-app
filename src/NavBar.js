@@ -8,6 +8,7 @@ class NavBar extends Component {
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
     this.context.handleLoginChange(false);
+    this.context.handleRecommendedResources([]);
   };
 
   renderLoggedInDisplay() {

@@ -16,8 +16,6 @@ class RecsPage extends Component {
       cost: "",
       results: [],
       error: "",
-      // savedResourceIds: [],
-      // addedToFavorites: false,
     };
   }
 
@@ -25,7 +23,7 @@ class RecsPage extends Component {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
-      error: "",
+      error: null,
     });
   };
 
@@ -36,7 +34,7 @@ class RecsPage extends Component {
           return Number(resource) === result.id;
         }).length > 0;
       return (
-        <div>
+        <div key={result.url}>
           <ResultItem
             key={result.id}
             id={result.id}
@@ -51,7 +49,7 @@ class RecsPage extends Component {
             cost={result.cost}
           />
           <button
-            key={result.title + result.id}
+            key={result.title}
             value={result.id}
             disabled={!this.context.isLoggedIn || isFavorited ? true : false}
             onClick={() => this.saveAResource(result.id)}
@@ -60,7 +58,9 @@ class RecsPage extends Component {
           </button>
 
           {isFavorited ? (
-            <Link to="/saved-resources">View in Saved Resources List</Link>
+            <Link to="/saved-resources" key={result.image_link}>
+              View in Saved Resources List
+            </Link>
           ) : null}
         </div>
       );
@@ -97,7 +97,6 @@ class RecsPage extends Component {
     fetch(`${baseUrl}/resources/recs${params}`, {
       headers: {
         "content-type": "application/json",
-        // Authorization: "Bearer " + TokenService.getAuthToken(),
       },
     })
       .then((recs) => {
@@ -115,6 +114,7 @@ class RecsPage extends Component {
   };
 
   render() {
+    const length = this.context.recommendedResources.length;
     return (
       <div>
         <h2>Get Reccomendations</h2>
@@ -137,7 +137,7 @@ class RecsPage extends Component {
               <option value="Japanese">Japanese</option>
               <option value="Swahili">Swahili</option>
               <option value="Afrikaans">Afrikaans</option>
-              <option value="other">Other</option>
+              <option value="Portuguese">Portuguese</option>
             </select>
           </label>
           <br />
@@ -211,13 +211,14 @@ class RecsPage extends Component {
         </form>
 
         <div>
-          {this.state.error ? <h2>{this.state.error}</h2> : null}
-          {this.context.recommendedResources.length === 0 ? null : (
+          {this.state.error ? (
+            <h2>{this.state.error}</h2>
+          ) : length > 0 ? (
             <div>
               <h1>Results</h1>
               {this.displayResults()}
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     );

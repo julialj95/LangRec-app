@@ -14,9 +14,10 @@ class SavedResources extends Component {
   }
 
   displayResults = () => {
-    const results = this.state.results.map((result) => {
+    console.log(this.context.savedResources);
+    const results = this.context.savedResources.map((result) => {
       return (
-        <div>
+        <div key={result.image_link}>
           <ResultItem
             key={result.id}
             id={result.id}
@@ -31,8 +32,8 @@ class SavedResources extends Component {
             cost={result.cost}
           />
           <button
+            key={result.title}
             value={result.id}
-            key={result.title + result.id}
             onClick={this.deleteFromFavorites}
           >
             Remove resource from favorites
@@ -41,7 +42,7 @@ class SavedResources extends Component {
       );
     });
 
-    if (this.state.results.length === 0) {
+    if (this.context.savedResources.length === 0) {
       return (
         <div>
           <h3>You have no saved resources.</h3>
@@ -54,14 +55,6 @@ class SavedResources extends Component {
       return results;
     }
   };
-
-  // removeResourceFromState = (resource_id) => {
-  //   const newResults = this.state.results.filter((resource) => {
-  //     return resource.id !== resource_id;
-  //   });
-  //   console.log(newResults);
-  //   this.setState({ results: newResults });
-  // };
 
   deleteFromFavorites = (e) => {
     e.preventDefault();
@@ -77,7 +70,7 @@ class SavedResources extends Component {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
       })
       .then(() => {
-        this.context.removesavedResourceId(resource_id);
+        this.context.removeSavedResource(resource_id);
       })
       .catch((error) => console.error(error));
   };
@@ -96,30 +89,13 @@ class SavedResources extends Component {
         return response.json();
       })
       .then((data) => {
-        // this.setState({ results: data });
-        this.context.handleSavedResources(data);
+        this.context.getSavedResources(data);
       })
       .catch((error) => console.error({ error }));
   }
 
   render() {
-    return (
-      // <div>
-      <div>
-        {/* {this.state.results.length === 0 ? (
-            <div>
-              <h3>You have no saved resources.</h3>
-              <h3>
-                Search through resource recommendations and find resources to
-                save!
-              </h3>
-            </div>
-          ) : ( */}
-        {this.displayResults()}
-        {/* )}
-        </div> */}
-      </div>
-    );
+    return <div>{this.displayResults()}</div>;
   }
 }
 

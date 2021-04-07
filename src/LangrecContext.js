@@ -5,10 +5,12 @@ const LangrecContext = React.createContext({
   isLoggedIn: false,
   changeLoginStatus: () => {},
   addSavedResource: () => {},
-  removeSavedResourceId: () => {},
+  removeSavedResource: () => {},
   getSavedResources: () => {},
   handleRecommendedResources: () => {},
   savedResourceIds: [],
+  savedResources: [],
+  recommendedResources: [],
 });
 
 export { LangrecContext };
