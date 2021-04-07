@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import TokenService from "./services/token-service";
 import config from "./config";
 import { LangrecContext } from "./LangrecContext";
 
@@ -10,7 +11,7 @@ class SignUp extends Component {
     this.state = {
       username: "",
       password: "",
-      error: false,
+      error: "",
     };
   }
 
@@ -32,20 +33,22 @@ class SignUp extends Component {
       }),
       headers: {
         "content-type": "application/json",
-        Authorization: "Bearer " + config.API_KEY,
+        Authorization: "Bearer " + TokenService.getAuthToken(),
       },
     })
-      // .then((response) => {
-      //   if (!response.ok) {
-      //     return response.json().then((event) => Promise.reject(event));
-      //   }
-      //   return response.json();
-      // })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((e) => Promise.reject(e));
+        }
+        return res.json();
+      })
+
       .then(() => this.props.history.push("/login"))
-      .catch((error) => console.error({ error }));
+      .catch((error) => this.setState({ error }));
   };
 
   render() {
+    const errorMessage = this.state.error.error;
     return (
       <div>
         <h2>Sign Up</h2>
@@ -73,6 +76,7 @@ class SignUp extends Component {
           <br />
           <button type="submit">Create Account</button>
         </form>
+        {this.state.error ? <h3>{errorMessage}</h3> : null}
       </div>
     );
   }

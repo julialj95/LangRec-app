@@ -68,6 +68,9 @@ class Login extends React.Component {
           <br />
           <button type="submit">Log In</button>
         </form>
+        {this.state.error ? (
+          <h3>Incorrect username or password. Please try again.</h3>
+        ) : null}
       </div>
     );
   }
