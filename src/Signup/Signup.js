@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import TokenService from "./services/token-service";
-import config from "./config";
-import { LangrecContext } from "./LangrecContext";
+import TokenService from "../services/token-service";
+import config from "../config";
+import { LangrecContext } from "../LangrecContext";
 
 class SignUp extends Component {
   static contextType = LangrecContext;

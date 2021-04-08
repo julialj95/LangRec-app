@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { LangrecContext } from "./LangrecContext";
-import ResultItem from "./ResultItem";
-import TokenService from "./services/token-service";
-import config from "./config";
+import { LangrecContext } from "../LangrecContext";
+import ResultItem from "../ResultItem/ResultItem";
+import TokenService from "../services/token-service";
+import config from "../config";
 
 class SavedResources extends Component {
   static contextType = LangrecContext;

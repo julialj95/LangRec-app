@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import AuthorizationApiService from "./services/authorization-api-service";
-import TokenService from "./services/token-service";
-import { LangrecContext } from "./LangrecContext";
+import AuthorizationApiService from "../services/authorization-api-service";
+import TokenService from "../services/token-service";
+import { LangrecContext } from "../LangrecContext";
 
 class Login extends React.Component {
   static contextType = LangrecContext;

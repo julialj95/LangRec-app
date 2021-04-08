@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import TokenService from "./services/token-service";
+import TokenService from "../services/token-service";
 import { Link } from "react-router-dom";
-import { LangrecContext } from "./LangrecContext";
+import { LangrecContext } from "../LangrecContext";
+import "./NavBar.css";
 
 class NavBar extends Component {
   static contextType = LangrecContext;
@@ -14,10 +15,10 @@ class NavBar extends Component {
   renderLoggedInDisplay() {
     return (
       <>
-        <Link to="/saved-resources">My Saved Resources</Link>
+        <Link to="/saved-resources">MY SAVED RESOURCES</Link>
         {/* <Link to="/share">Submit Resources</Link> */}
         <Link to="/" onClick={this.handleLogoutClick}>
-          Logout
+          LOGOUT
         </Link>
       </>
     );
@@ -26,8 +27,8 @@ class NavBar extends Component {
   renderLoggedOutDisplay() {
     return (
       <>
-        <Link to="/signup">Sign Up</Link>
-        <Link to="/login">Log In</Link>
+        <Link to="/signup">SIGN UP</Link>
+        <Link to="/login">LOG IN</Link>
       </>
     );
   }
@@ -36,8 +37,8 @@ class NavBar extends Component {
     return (
       <nav>
         <ul className="navbar">
-          <Link to="/">Home</Link>
-          <Link to="/recs">Get Recommendations</Link>
+          <Link to="/">HOME</Link>
+          <Link to="/recs">GET RECOMMENDATIONS</Link>
           {this.context.isLoggedIn
             ? this.renderLoggedInDisplay()
             : this.renderLoggedOutDisplay()}

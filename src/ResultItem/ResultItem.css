@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+.result-item {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+.result-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+.top {
+  flex-grow: 1;
+  justify-content: space-around;
+}
+
+.middle {
+  flex-wrap: wrap;
+}
+
+.centertext {
+  text-align: center;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  font-family: "Nunito";
+}

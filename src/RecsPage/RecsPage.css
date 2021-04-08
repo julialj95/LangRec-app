@@ -1,0 +1,28 @@
+.recs-form {
+  display: flex;
+  flex-direction: column;
+}
+.form-field {
+  background-color: transparent;
+  border: 1px solid darkslategray;
+  border-radius: 5px;
+  color: darkslategray;
+  font-size: 16px;
+  font-family: inherit;
+  flex-grow: 1;
+  height: 40px;
+  padding: 0 10px;
+  margin: 10px;
+}
+
+.result-box {
+  background: linear-gradient(to bottom right, #88d498 0, #3f6c51);
+  /* background: #e86252; */
+  /* background: #3f6c51; */
+  border-radius: 8px;
+  color: #eee;
+  cursor: pointer;
+  font-size: 25px;
+  margin: 10%;
+  padding: 0;
+}

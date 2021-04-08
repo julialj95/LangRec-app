@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+/* .navbar {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+} */
+.wrapper {
+  /* background: radial-gradient(ellipse at bottom, #f2deac 0, #f2deac 100%); */
+  /* background: radial-gradient(ellipse at bottom, #f3c98b 0, #f3c98b 100%); */
+  /* background: #fcd5ce; */
+  background: radial-gradient(ellipse at bottom, #ffddd2 0, #fec89a 100%);
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+header,
+h1,
+h2,
+h3,
+h4,
+form,
+p,
+button {
+  text-align: center;
+  color: darkslategray;
+}
+
+img {
+  margin-left: 45%;
+  margin-right: 45%;
+}
+
+.hero {
+  background-image: url(../images/people_cropped.png);
+  height: 300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  position: relative;
+}
+
+/* responsive styling for various sizes */
+@media all and (min-width: 600px) {
+}
+@media all and (min-width: 768px) {
+}
+@media all and (min-width: 992px) {
+}
+
+@media all and (min-width: 1200px) {
+}

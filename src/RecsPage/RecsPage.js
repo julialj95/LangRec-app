@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import ResultItem from "./ResultItem";
-import TokenService from "./services/token-service";
-import config from "./config";
-import { LangrecContext } from "./LangrecContext";
+import ResultItem from "../ResultItem/ResultItem";
+import TokenService from "../services/token-service";
+import config from "../config";
+import { LangrecContext } from "../LangrecContext";
+import "./RecsPage.css";
 
 class RecsPage extends Component {
   static contextType = LangrecContext;
@@ -34,7 +35,7 @@ class RecsPage extends Component {
           return Number(resource) === result.id;
         }).length > 0;
       return (
-        <div key={result.url}>
+        <div className="result-box" key={result.url}>
           <ResultItem
             key={result.id}
             id={result.id}
@@ -123,38 +124,46 @@ class RecsPage extends Component {
           your needs!
         </h3>
         <form onSubmit={(e) => this.getRecommendations(e)}>
-          <label htmlFor="language">
-            Language
-            <select name="language" onChange={(e) => this.handleChange(e)}>
-              <option value={null}>Select language...</option>
-              <option value="Spanish">Spanish</option>
-              <option value="French">French</option>
-              <option value="German">German</option>
-              <option value="Korean">Korean</option>
-              <option value="Mandarin">Mandarin</option>
-              <option value="Italian">Italian</option>
-              <option value="Cantonese">Cantonese</option>
-              <option value="Japanese">Japanese</option>
-              <option value="Swahili">Swahili</option>
-              <option value="Afrikaans">Afrikaans</option>
-              <option value="Portuguese">Portuguese</option>
-            </select>
-          </label>
+          {/* <label htmlFor="language">
+            Language */}
+          <select
+            className="form-field"
+            name="language"
+            onChange={(e) => this.handleChange(e)}
+          >
+            <option value={null}>Select language...</option>
+            <option value="Spanish">Spanish</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+            <option value="Korean">Korean</option>
+            <option value="Mandarin">Mandarin</option>
+            <option value="Italian">Italian</option>
+            <option value="Cantonese">Cantonese</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Swahili">Swahili</option>
+            <option value="Afrikaans">Afrikaans</option>
+            <option value="Portuguese">Portuguese</option>
+          </select>
+          {/* </label> */}
           <br />
-          <label htmlFor="type">
-            Resource Type
-            <select name="type" onChange={(e) => this.handleChange(e)}>
-              <option value={null}>Select Type...</option>
-              <option value="Textbook">Textbook</option>
-              <option value="Storybook">Storybook</option>
-              <option value="Class">Class</option>
-              <option value="Website">Website</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
+          {/* <label htmlFor="type">
+            Resource Type */}
+          <select
+            className="form-field"
+            name="type"
+            onChange={(e) => this.handleChange(e)}
+          >
+            <option value={null}>Select Resource Type...</option>
+            <option value="Textbook">Textbook</option>
+            <option value="Storybook">Storybook</option>
+            <option value="Class">Class</option>
+            <option value="Website">Website</option>
+            <option value="other">Other</option>
+          </select>
+          {/* </label> */}
           <br />
           <br />
-          <label>
+          <label className="form-field">
             Level
             <br />
             <input
@@ -186,7 +195,7 @@ class RecsPage extends Component {
           </label>
           <br />
           <br />
-          <label>
+          <label className="form-field">
             Cost
             <br />
             <input
