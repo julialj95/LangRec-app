@@ -1,21 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
-/* header {
-  background-image: url(map_blue_background.png);
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
-} */
 header > a {
   text-decoration: none;
-  font-size: 45px;
-  color: darkslategray;
+  font-size: 25px;
+  color: white;
+  /* padding: 15px; */
 }
 a:hover {
   color: darkgreen;
 }
 
-header {
-  padding: 25px;
+.header_box {
+  padding: 15px;
 }

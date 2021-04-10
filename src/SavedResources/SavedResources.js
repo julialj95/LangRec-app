@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { LangrecContext } from "../LangrecContext";
 import ResultItem from "../ResultItem/ResultItem";
 import TokenService from "../services/token-service";
@@ -47,7 +48,8 @@ class SavedResources extends Component {
         <div>
           <h3>You have no saved resources.</h3>
           <h3>
-            Search through resource recommendations and find resources to save!
+            Search through <Link to="/recs">resource recommendations</Link> and
+            find resources to save!
           </h3>
         </div>
       );

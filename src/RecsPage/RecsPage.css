@@ -1,28 +1,80 @@
-.recs-form {
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+.recs_block > h1,
+h2,
+h3,
+p {
+  font-family: "Montserrat";
+  color: white;
+}
+
+.results_header {
+  font-family: "Montserrat";
+  color: white;
+}
+
+.recs_form {
   display: flex;
   flex-direction: column;
+  margin-left: 10%;
+  margin-right: 10%;
 }
-.form-field {
+.form_field {
+  /* background-color: (231, 111, 81, 0.5); */
   background-color: transparent;
-  border: 1px solid darkslategray;
+  border: 1px solid white;
   border-radius: 5px;
-  color: darkslategray;
+  color: white;
   font-size: 16px;
   font-family: inherit;
   flex-grow: 1;
   height: 40px;
   padding: 0 10px;
   margin: 10px;
+  text-align-last: center;
 }
 
-.result-box {
-  background: linear-gradient(to bottom right, #88d498 0, #3f6c51);
-  /* background: #e86252; */
-  /* background: #3f6c51; */
-  border-radius: 8px;
-  color: #eee;
+.form_field:hover {
   cursor: pointer;
-  font-size: 25px;
-  margin: 10%;
-  padding: 0;
+}
+.form_field:focus {
+  border-color: darkgreen;
+  border-width: 2px;
+}
+
+button {
+  background: linear-gradient(to bottom, #219ebc, #003049 100%);
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+}
+button:hover {
+  cursor: pointer;
+}
+
+.button_row {
+  width: 100%;
+  text-align: center;
+}
+
+option {
+  font-family: "Montserrat";
+  text-align: center;
+  color: darkslategray;
+}
+
+/* responsive styling for various sizes */
+@media all and (min-width: 600px) {
+}
+@media all and (min-width: 768px) {
+  .recs_form {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+@media all and (min-width: 992px) {
+}
+
+@media all and (min-width: 1200px) {
 }

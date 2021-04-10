@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import TokenService from "../services/token-service";
 import config from "../config";
 import { LangrecContext } from "../LangrecContext";
+import "./Signup.css";
 
 class SignUp extends Component {
   static contextType = LangrecContext;
@@ -51,28 +52,29 @@ class SignUp extends Component {
     const errorMessage = this.state.error.error;
     return (
       <div>
-        <h2>Sign Up</h2>
-        <h3>Create an account to save resources that look interesting!</h3>
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-          <label htmlFor="username">
-            Username
-            <input
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={(e) => this.handleChange(e)}
-            />
-          </label>
+        <h2>SIGN UP</h2>
+        <h3>Create an account to save resources to your favorites list!</h3>
+        <form className="signup_form" onSubmit={(e) => this.handleSubmit(e)}>
+          <input
+            className="signup_field"
+            type="text"
+            name="username"
+            value={this.state.username}
+            placeholder="Create a username..."
+            onChange={(e) => this.handleChange(e)}
+          />
+
           <br />
-          <label htmlFor="password">
-            password
-            <input
-              type="text"
-              name="password"
-              value={this.state.password}
-              onChange={(e) => this.handleChange(e)}
-            />
-          </label>
+
+          <input
+            className="signup_field"
+            type="text"
+            name="password"
+            value={this.state.password}
+            placeholder="Create a password..."
+            onChange={(e) => this.handleChange(e)}
+          />
+
           <br />
           <button type="submit">Create Account</button>
         </form>

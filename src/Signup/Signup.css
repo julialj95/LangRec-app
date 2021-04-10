@@ -1,0 +1,20 @@
+.signup_form {
+  text-align: center;
+  color: white;
+}
+.signup_field {
+  border: solid 1px white;
+  border-radius: 5px;
+  background: transparent;
+  text-align: center;
+  padding: 4px;
+  margin: 5px;
+  font-size: 15px;
+  font-family: "Nunito";
+  color: white;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}

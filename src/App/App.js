@@ -53,6 +53,10 @@ class App extends React.Component {
     });
   };
 
+  handleSavedResourcesOnLogout = () => {
+    this.setState({ savedResources: [] });
+  };
+
   handleRecommendedResources = (recs) => {
     if (recs.length === 0) {
       this.setState({ recommendedResources: [] });
@@ -76,12 +80,15 @@ class App extends React.Component {
             removeSavedResource: this.removeSavedResource,
             handleRecommendedResources: this.handleRecommendedResources,
             recommendedResources: this.state.recommendedResources,
+            handleSavedResourcesOnLogout: this.handleSavedResourcesOnLogout,
           }}
         >
-          <NavBar />
-          <div className="hero">
-            <div className="hero-text">
+          <div className="header">
+            <div className="title">
               <Header />
+            </div>
+            <div className="nav">
+              <NavBar />
             </div>
           </div>
 

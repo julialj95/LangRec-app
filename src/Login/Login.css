@@ -1,0 +1,16 @@
+.login_form {
+  color: white;
+  text-align: center;
+}
+
+.login_field {
+  border: solid 1px white;
+  border-radius: 5px;
+  background: transparent;
+  text-align: center;
+  padding: 4px;
+  margin: 5px;
+  font-size: 15px;
+  font-family: "Nunito";
+  color: white;
+}

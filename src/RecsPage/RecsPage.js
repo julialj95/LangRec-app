@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ResultItem from "../ResultItem/ResultItem";
-import TokenService from "../services/token-service";
+// import TokenService from "../services/token-service";
 import config from "../config";
 import { LangrecContext } from "../LangrecContext";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faGlobeAmericas } from "@fortawesome/free-solid-svg-icons";
+// import { faHeart } from "@fortawesome/free-regular-svg-icons";
+// import { faHeart } from "@fortawesome/free-solid-svg-icons"
 import "./RecsPage.css";
 
 class RecsPage extends Component {
@@ -35,66 +39,52 @@ class RecsPage extends Component {
           return Number(resource) === result.id;
         }).length > 0;
       return (
-        <div className="result-box" key={result.url}>
-          <ResultItem
-            key={result.id}
-            id={result.id}
-            title={result.title}
-            image_link={result.image_link}
-            language={result.language}
-            level={result.level}
-            type={result.type}
-            rating={result.rating}
-            url={result.url}
-            description={result.description}
-            cost={result.cost}
-          />
-          <button
-            key={result.title}
-            value={result.id}
-            disabled={!this.context.isLoggedIn || isFavorited ? true : false}
-            onClick={() => this.saveAResource(result.id)}
-          >
-            Favorite!
-          </button>
-
-          {isFavorited ? (
-            <Link to="/saved-resources" key={result.image_link}>
-              View in Saved Resources List
-            </Link>
-          ) : null}
-        </div>
+        <ResultItem
+          key={result.id}
+          id={result.id}
+          title={result.title}
+          image_link={result.image_link}
+          language={result.language}
+          level={result.level}
+          type={result.type}
+          rating={result.rating}
+          url={result.url}
+          description={result.description}
+          cost={result.cost}
+          favorited={isFavorited}
+        />
       );
     });
     return results;
   };
 
-  saveAResource = (resource_id) => {
-    fetch(`${config.API_BASE_URL}/resources/recs`, {
-      method: "POST",
-      body: JSON.stringify({ resource_id }),
-      headers: {
-        "content-type": "application/json",
-        Authorization: "Bearer " + TokenService.getAuthToken(),
-      },
-    })
-      .then((res) => {
-        if (!res.ok) {
-          res.json().then((e) => Promise.reject(e));
-        } else {
-          this.context.addSavedResource(resource_id);
+  // saveAResource = (resource_id) => {
+  //   fetch(`${config.API_BASE_URL}/resources/recs`, {
+  //     method: "POST",
+  //     body: JSON.stringify({ resource_id }),
+  //     headers: {
+  //       "content-type": "application/json",
+  //       Authorization: "Bearer " + TokenService.getAuthToken(),
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         res.json().then((e) => Promise.reject(e));
+  //       } else {
+  //         this.context.addSavedResource(resource_id);
 
-          res.json();
-        }
-      })
-      .catch((error) => console.error({ error }));
-  };
+  //         res.json();
+  //       }
+  //     })
+  //     .catch((error) => console.error({ error }));
+  // };
 
   getRecommendations = (e) => {
     e.preventDefault();
     const { language, type, level, cost } = this.state;
     const baseUrl = config.API_BASE_URL;
     const params = `?language=${language}&level=${level}&type=${type}&cost=${cost}`;
+
     fetch(`${baseUrl}/resources/recs${params}`, {
       headers: {
         "content-type": "application/json",
@@ -117,106 +107,76 @@ class RecsPage extends Component {
   render() {
     const length = this.context.recommendedResources.length;
     return (
-      <div>
-        <h2>Get Reccomendations</h2>
+      <div className="recs_block">
+        <h2>Get Recommendations</h2>
         <h3>
-          Enter your information to receive the highest rated resources that fit
-          your needs!
+          Enter your requirements to view the resources that best fit your
+          needs!
         </h3>
-        <form onSubmit={(e) => this.getRecommendations(e)}>
-          {/* <label htmlFor="language">
-            Language */}
-          <select
-            className="form-field"
-            name="language"
-            onChange={(e) => this.handleChange(e)}
-          >
-            <option value={null}>Select language...</option>
-            <option value="Spanish">Spanish</option>
-            <option value="French">French</option>
-            <option value="German">German</option>
-            <option value="Korean">Korean</option>
-            <option value="Mandarin">Mandarin</option>
-            <option value="Italian">Italian</option>
-            <option value="Cantonese">Cantonese</option>
-            <option value="Japanese">Japanese</option>
-            <option value="Swahili">Swahili</option>
-            <option value="Afrikaans">Afrikaans</option>
-            <option value="Portuguese">Portuguese</option>
-          </select>
-          {/* </label> */}
-          <br />
-          {/* <label htmlFor="type">
-            Resource Type */}
-          <select
-            className="form-field"
-            name="type"
-            onChange={(e) => this.handleChange(e)}
-          >
-            <option value={null}>Select Resource Type...</option>
-            <option value="Textbook">Textbook</option>
-            <option value="Storybook">Storybook</option>
-            <option value="Class">Class</option>
-            <option value="Website">Website</option>
-            <option value="other">Other</option>
-          </select>
-          {/* </label> */}
-          <br />
-          <br />
-          <label className="form-field">
-            Level
-            <br />
-            <input
-              type="radio"
-              id="beginner"
-              name="level"
-              value="Beginner"
-              onChange={(e) => this.handleChange(e)}
-            />
-            <label htmlFor="beginner">Beginner</label>
-            <br />
-            <input
-              type="radio"
-              id="intermediate"
-              name="level"
-              value="Intermediate"
-              onChange={(e) => this.handleChange(e)}
-            />
-            <label htmlFor="intermediate">Intermediate</label>
-            <br />
-            <input
-              type="radio"
-              id="advanced"
-              name="level"
-              value="Advanced"
-              onChange={(e) => this.handleChange(e)}
-            />
-            <label htmlFor="advanced">Advanced</label>
-          </label>
-          <br />
-          <br />
-          <label className="form-field">
-            Cost
-            <br />
-            <input
-              type="radio"
-              name="cost"
-              value="Free"
-              onChange={(e) => this.handleChange(e)}
-            />
-            <label htmlFor="cost">Free</label>
-            <br />
-            <input
-              type="radio"
-              name="cost"
-              value="Paid"
-              onChange={(e) => this.handleChange(e)}
-            />
-            <label htmlFor="cost">Paid</label>
-            <br />
-          </label>
 
-          <button type="submit">Get Recs!</button>
+        <form onSubmit={(e) => this.getRecommendations(e)}>
+          <div className="recs_form">
+            <select
+              className="form_field"
+              name="language"
+              onChange={(e) => this.handleChange(e)}
+            >
+              <option value={null}>Select language...</option>
+              <option value="Spanish">Spanish</option>
+              <option value="French">French</option>
+              <option value="German">German</option>
+              <option value="Korean">Korean</option>
+              <option value="Mandarin">Mandarin</option>
+              <option value="Italian">Italian</option>
+              <option value="Cantonese">Cantonese</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Swahili">Swahili</option>
+              <option value="Afrikaans">Afrikaans</option>
+              <option value="Portuguese">Portuguese</option>
+            </select>
+
+            <br />
+
+            <select
+              className="form_field"
+              name="type"
+              onChange={(e) => this.handleChange(e)}
+            >
+              <option value={null}>Select Resource Type...</option>
+              <option value="Textbook">Textbook</option>
+              <option value="Storybook">Storybook</option>
+              <option value="Class">Class</option>
+              <option value="Website">Website</option>
+              <option value="other">Other</option>
+            </select>
+
+            <br />
+            <select
+              className="form_field"
+              name="level"
+              onChange={(e) => this.handleChange(e)}
+            >
+              <option value={null}>Select Level...</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+
+            <br />
+            <select
+              className="form_field"
+              name="cost"
+              onChange={(e) => this.handleChange(e)}
+            >
+              <option value={null}>Select Cost...</option>
+              <option value="Free">Free</option>
+              <option value="Paid">Paid</option>
+            </select>
+          </div>
+          <br />
+          <div className="button_row">
+            <button type="submit">GET RECS</button>
+          </div>
         </form>
 
         <div>
@@ -224,7 +184,7 @@ class RecsPage extends Component {
             <h2>{this.state.error}</h2>
           ) : length > 0 ? (
             <div>
-              <h1>Results</h1>
+              <h1 className="results_header">Results</h1>
               {this.displayResults()}
             </div>
           ) : null}

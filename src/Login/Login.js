@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import AuthorizationApiService from "../services/authorization-api-service";
 import TokenService from "../services/token-service";
 import { LangrecContext } from "../LangrecContext";
+import "./Login.css";
 
 class Login extends React.Component {
   static contextType = LangrecContext;
@@ -46,25 +47,26 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <h2>Log in to access your previously saved resources</h2>
-        <form onSubmit={this.handleSubmitJwtAuth}>
-          <label htmlFor="username">
-            Username
-            <input
-              type="text"
-              name="username"
-              onChange={(e) => this.handleChange(e)}
-            />
-          </label>
+        <h2>LOG IN</h2>
+        <form className="login_form" onSubmit={this.handleSubmitJwtAuth}>
+          <input
+            className="login_field"
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            onChange={(e) => this.handleChange(e)}
+          />
+
           <br />
-          <label htmlFor="password">
-            password
-            <input
-              type="text"
-              name="password"
-              onChange={(e) => this.handleChange(e)}
-            />
-          </label>
+
+          <input
+            className="login_field"
+            type="text"
+            name="password"
+            placeholder="Enter password"
+            onChange={(e) => this.handleChange(e)}
+          />
+
           <br />
           <button type="submit">Log In</button>
         </form>
