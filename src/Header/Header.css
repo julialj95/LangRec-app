@@ -1,15 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
-header > a {
+.header_box > a {
   text-decoration: none;
   font-size: 25px;
   color: white;
-  /* padding: 15px; */
+  text-align: center;
 }
 a:hover {
   color: darkgreen;
 }
 
 .header_box {
-  padding: 15px;
+  padding: 5px;
+  text-align: center;
 }

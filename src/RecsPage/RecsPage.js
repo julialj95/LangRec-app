@@ -58,27 +58,6 @@ class RecsPage extends Component {
     return results;
   };
 
-  // saveAResource = (resource_id) => {
-  //   fetch(`${config.API_BASE_URL}/resources/recs`, {
-  //     method: "POST",
-  //     body: JSON.stringify({ resource_id }),
-  //     headers: {
-  //       "content-type": "application/json",
-  //       Authorization: "Bearer " + TokenService.getAuthToken(),
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         res.json().then((e) => Promise.reject(e));
-  //       } else {
-  //         this.context.addSavedResource(resource_id);
-
-  //         res.json();
-  //       }
-  //     })
-  //     .catch((error) => console.error({ error }));
-  // };
-
   getRecommendations = (e) => {
     e.preventDefault();
     const { language, type, level, cost } = this.state;
@@ -175,7 +154,9 @@ class RecsPage extends Component {
           </div>
           <br />
           <div className="button_row">
-            <button type="submit">GET RECS</button>
+            <button className="get_recs_button" type="submit">
+              GET RECS
+            </button>
           </div>
         </form>
 
@@ -184,7 +165,7 @@ class RecsPage extends Component {
             <h2>{this.state.error}</h2>
           ) : length > 0 ? (
             <div>
-              <h1 className="results_header">Results</h1>
+              <h1 className="results_header">RESULTS</h1>
               {this.displayResults()}
             </div>
           ) : null}

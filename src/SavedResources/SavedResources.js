@@ -17,29 +17,27 @@ class SavedResources extends Component {
   displayResults = () => {
     console.log(this.context.savedResources);
     const results = this.context.savedResources.map((result) => {
+      const isFavorited =
+        this.context.savedResourceIds.filter((resource) => {
+          console.log(Number(resource), resource.id);
+          return Number(resource) === result.id;
+        }).length > 0;
+
       return (
-        <div key={result.image_link}>
-          <ResultItem
-            key={result.id}
-            id={result.id}
-            title={result.title}
-            image_link={result.image_link}
-            language={result.language}
-            level={result.level}
-            type={result.type}
-            rating={result.rating}
-            url={result.url}
-            description={result.description}
-            cost={result.cost}
-          />
-          <button
-            key={result.title}
-            value={result.id}
-            onClick={this.deleteFromFavorites}
-          >
-            Remove resource from favorites
-          </button>
-        </div>
+        <ResultItem
+          key={result.id}
+          id={result.id}
+          title={result.title}
+          image_link={result.image_link}
+          language={result.language}
+          level={result.level}
+          type={result.type}
+          rating={result.rating}
+          url={result.url}
+          description={result.description}
+          cost={result.cost}
+          favorited={isFavorited}
+        />
       );
     });
 
@@ -56,25 +54,6 @@ class SavedResources extends Component {
     } else {
       return results;
     }
-  };
-
-  deleteFromFavorites = (e) => {
-    e.preventDefault();
-    const resource_id = e.target.value;
-    fetch(`${config.API_BASE_URL}/resources/saved-resources/${resource_id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-        Authorization: "Bearer " + TokenService.getAuthToken(),
-      },
-    })
-      .then((res) => {
-        if (!res.ok) return res.json().then((e) => Promise.reject(e));
-      })
-      .then(() => {
-        this.context.removeSavedResource(resource_id);
-      })
-      .catch((error) => console.error(error));
   };
 
   componentDidMount() {
@@ -97,7 +76,12 @@ class SavedResources extends Component {
   }
 
   render() {
-    return <div>{this.displayResults()}</div>;
+    return (
+      <>
+        <h2>SAVED RESOURCES</h2>
+        <div>{this.displayResults()}</div>
+      </>
+    );
   }
 }
 

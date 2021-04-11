@@ -54,7 +54,7 @@ class App extends React.Component {
   };
 
   handleSavedResourcesOnLogout = () => {
-    this.setState({ savedResources: [] });
+    this.setState({ savedResources: [], savedResourceIds: [] });
   };
 
   handleRecommendedResources = (recs) => {

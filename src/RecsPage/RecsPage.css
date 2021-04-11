@@ -39,7 +39,7 @@ p {
   cursor: pointer;
 }
 .form_field:focus {
-  border-color: darkgreen;
+  border-color: #1d3557;
   border-width: 2px;
 }
 
@@ -51,6 +51,7 @@ button {
 }
 button:hover {
   cursor: pointer;
+  color: #ff5c8a;
 }
 
 .button_row {
