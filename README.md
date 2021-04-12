@@ -12,4 +12,4 @@ Using LangRec, users can get targeted recommendations for foreign language learn
 
 ### Home Page
 
-![Homepage](images/homepage.png)
+![Homepage](src/images/homepage.png)
