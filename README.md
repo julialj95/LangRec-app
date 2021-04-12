@@ -13,3 +13,19 @@ Using LangRec, users can get targeted recommendations for foreign language learn
 ### Home Page
 
 ![Homepage](src/images/homepage.png)
+
+### Login Page
+
+![Login](src/images/login.png)
+
+### Recommendations Page
+
+![Recs](src/images/recspage)
+
+### Saved Resources Page
+
+![Saved Resources](src/images/savedresources)
+
+### Result Item
+
+![Result](src/images/resultitem.png)
