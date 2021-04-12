@@ -92,6 +92,19 @@ p {
   border: none;
 }
 
+.fav_btn:hover {
+  color: white;
+}
+
+.fav_btn_logged_in {
+  background: transparent;
+  border: none;
+}
+
+.fav_btn_logged_in:hover {
+  color: #ff5c8a;
+}
+
 .middle {
   flex-wrap: wrap;
 }

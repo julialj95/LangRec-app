@@ -142,7 +142,9 @@ class ResultItem extends React.Component {
               <div className="results_section">
                 <div className="favorite_row">
                   <button
-                    className="fav_btn"
+                    className={
+                      this.context.isLoggedIn ? "fav_btn_logged_in" : "fav_btn"
+                    }
                     key={this.props.title}
                     value={this.props.id}
                     disabled={!this.context.isLoggedIn ? true : false}
@@ -176,9 +178,14 @@ class ResultItem extends React.Component {
                 {!this.context.isLoggedIn ? (
                   <div className="favorites_link_row">
                     <p>
-                      <Link to="/signup">Sign up </Link> or{" "}
-                      <Link to="/login">log in</Link> to add this resource to
-                      your favorites!
+                      <Link to="/signup" className="view_link">
+                        Sign up{" "}
+                      </Link>{" "}
+                      or{" "}
+                      <Link to="/login" className="view_link">
+                        log in
+                      </Link>{" "}
+                      to add this resource to your favorites!
                     </p>
                   </div>
                 ) : null}
