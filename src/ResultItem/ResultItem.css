@@ -63,10 +63,12 @@ p {
 .result_image {
   flex-grow: 1;
   padding: 15px;
-  width: 50%;
+  max-width: 50%;
   max-height: 250px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .desc_row {
   flex-direction: column;
@@ -79,10 +81,8 @@ p {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  /* text-align: right; */
 }
 .favorites_link_row {
-  /* width: 100%; */
   display: flex;
   justify-content: flex-end;
 }
@@ -90,7 +90,6 @@ p {
 .fav_btn {
   background: transparent;
   border: none;
-  /* flex-grow: 1; */
 }
 
 .middle {
@@ -121,7 +120,10 @@ p {
 .top_block {
   color: white;
 }
-
+.view_link:hover {
+  color: #ff5c8a;
+  font-family: "Montserrat";
+}
 /* responsive styling for various sizes */
 @media all and (min-width: 600px) {
   .labels_row_bottom {

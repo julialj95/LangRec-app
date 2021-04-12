@@ -8,7 +8,6 @@ import Login from "../Login/Login";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import SavedResources from "../SavedResources/SavedResources";
-// import config from "./config";
 import { LangrecContext } from "../LangrecContext";
 
 class App extends React.Component {
@@ -36,7 +35,8 @@ class App extends React.Component {
   };
 
   getSavedResources = (resources) => {
-    this.setState({ savedResources: resources });
+    const resourceIds = resources.map((resource) => resource.id);
+    this.setState({ savedResources: resources, savedResourceIds: resourceIds });
   };
 
   removeSavedResource = (resource_id) => {

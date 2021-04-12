@@ -15,11 +15,9 @@ class SavedResources extends Component {
   }
 
   displayResults = () => {
-    console.log(this.context.savedResources);
     const results = this.context.savedResources.map((result) => {
       const isFavorited =
         this.context.savedResourceIds.filter((resource) => {
-          console.log(Number(resource), resource.id);
           return Number(resource) === result.id;
         }).length > 0;
 

@@ -37,16 +37,10 @@ button {
 }
 
 /* responsive styling for various sizes */
-@media all and (min-width: 600px) {
-}
+
 @media all and (min-width: 768px) {
   .header {
     flex-direction: row;
     justify-content: center;
   }
-}
-@media all and (min-width: 992px) {
-}
-
-@media all and (min-width: 1200px) {
 }

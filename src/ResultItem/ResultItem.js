@@ -22,7 +22,6 @@ class ResultItem extends React.Component {
   }
 
   displayFull = () => {
-    console.log("display change called");
     this.setState((prevState) => {
       return {
         displayFull: !prevState.displayFull,
@@ -47,8 +46,6 @@ class ResultItem extends React.Component {
   };
 
   saveAResource = (resource_id) => {
-    console.log("save a resource called");
-    console.log(resource_id);
     fetch(`${config.API_BASE_URL}/resources/recs`, {
       method: "POST",
       body: JSON.stringify({ resource_id }),
@@ -70,9 +67,6 @@ class ResultItem extends React.Component {
   };
 
   deleteFromFavorites = (resource_id) => {
-    console.log("deletefavorites called");
-    // e.preventDefault();
-    // const resource_id = e.target.value;
     fetch(`${config.API_BASE_URL}/resources/saved-resources/${resource_id}`, {
       method: "DELETE",
       headers: {
@@ -107,8 +101,7 @@ class ResultItem extends React.Component {
     const lev = level.toUpperCase();
     const t = type.toUpperCase();
     const path = this.props.match.path;
-    console.log(path);
-    console.log(this.props.favorited);
+
     return (
       <div className="result">
         <div className="top_block" onClick={this.displayFull}>
@@ -126,9 +119,7 @@ class ResultItem extends React.Component {
             </div>
           </div>
           <h3 className="title_row">{this.props.title}</h3>
-          {!this.state.displayFull ? (
-            <p className="view_more">View full resource...</p>
-          ) : null}
+          {!this.state.displayFull ? <p>View full resource...</p> : null}
         </div>
         {this.state.displayFull ? (
           <>
@@ -172,7 +163,11 @@ class ResultItem extends React.Component {
                 {this.props.favorited && path === "/recs" ? (
                   <div className="favorites_link_row">
                     <p>
-                      <Link to="/saved-resources" key={this.props.image_link}>
+                      <Link
+                        to="/saved-resources"
+                        key={this.props.image_link}
+                        className="view_link"
+                      >
                         View in Saved Resources List
                       </Link>
                     </p>
