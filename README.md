@@ -2,7 +2,7 @@
 
 ## Live Link
 
-Visit [Langrec](https://langrec-app.vercel.app/)
+Visit [LangRec](https://langrec-app.vercel.app/)
 
 ## About LangRec
 
