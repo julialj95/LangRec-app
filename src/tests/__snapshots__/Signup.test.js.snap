@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the UI as expected 1`] = `
+<div>
+  <h2>
+    SIGN UP
+  </h2>
+  <h3>
+    Create an account to save resources to your favorites list!
+  </h3>
+  <form
+    className="signup_form"
+    onSubmit={[Function]}
+  >
+    <input
+      className="signup_field"
+      name="username"
+      onChange={[Function]}
+      placeholder="Create a username..."
+      type="text"
+      value=""
+    />
+    <br />
+    <input
+      className="signup_field"
+      name="password"
+      onChange={[Function]}
+      placeholder="Create a password..."
+      type="text"
+      value=""
+    />
+    <br />
+    <button
+      type="submit"
+    >
+      Create Account
+    </button>
+  </form>
+</div>
+`;

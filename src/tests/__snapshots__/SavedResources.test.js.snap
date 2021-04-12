@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the UI as expected 1`] = `
+Array [
+  <h2>
+    SAVED RESOURCES
+  </h2>,
+  <div>
+    <div>
+      <h3>
+        You have no saved resources.
+      </h3>
+      <h3>
+        Search through 
+        <a
+          href="/recs"
+          onClick={[Function]}
+        >
+          resource recommendations
+        </a>
+         and find resources to save!
+      </h3>
+    </div>
+  </div>,
+]
+`;

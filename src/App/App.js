@@ -11,8 +11,8 @@ import SavedResources from "../SavedResources/SavedResources";
 import { LangrecContext } from "../LangrecContext";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       user: {},
       isLoggedIn: false,

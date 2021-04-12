@@ -25,7 +25,3 @@ Using LangRec, users can get targeted recommendations for foreign language learn
 ### Saved Resources Page
 
 ![Saved Resources](src/images/savedresources)
-
-### Result Item
-
-![Result](src/images/resultitem.png)

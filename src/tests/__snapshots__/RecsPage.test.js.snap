@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the UI as expected 1`] = `
+<div
+  className="recs_block"
+>
+  <h2>
+    Get Recommendations
+  </h2>
+  <h3>
+    Enter your requirements to view the resources that best fit your needs!
+  </h3>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="recs_form"
+    >
+      <select
+        className="form_field"
+        name="language"
+        onChange={[Function]}
+      >
+        <option
+          value={null}
+        >
+          Select language...
+        </option>
+        <option
+          value="Spanish"
+        >
+          Spanish
+        </option>
+        <option
+          value="French"
+        >
+          French
+        </option>
+        <option
+          value="German"
+        >
+          German
+        </option>
+        <option
+          value="Korean"
+        >
+          Korean
+        </option>
+        <option
+          value="Mandarin"
+        >
+          Mandarin
+        </option>
+        <option
+          value="Italian"
+        >
+          Italian
+        </option>
+        <option
+          value="Cantonese"
+        >
+          Cantonese
+        </option>
+        <option
+          value="Japanese"
+        >
+          Japanese
+        </option>
+        <option
+          value="Swahili"
+        >
+          Swahili
+        </option>
+        <option
+          value="Afrikaans"
+        >
+          Afrikaans
+        </option>
+        <option
+          value="Portuguese"
+        >
+          Portuguese
+        </option>
+      </select>
+      <br />
+      <select
+        className="form_field"
+        name="type"
+        onChange={[Function]}
+      >
+        <option
+          value={null}
+        >
+          Select Resource Type...
+        </option>
+        <option
+          value="Textbook"
+        >
+          Textbook
+        </option>
+        <option
+          value="Storybook"
+        >
+          Storybook
+        </option>
+        <option
+          value="Class"
+        >
+          Class
+        </option>
+        <option
+          value="Website"
+        >
+          Website
+        </option>
+        <option
+          value="other"
+        >
+          Other
+        </option>
+      </select>
+      <br />
+      <select
+        className="form_field"
+        name="level"
+        onChange={[Function]}
+      >
+        <option
+          value={null}
+        >
+          Select Level...
+        </option>
+        <option
+          value="Beginner"
+        >
+          Beginner
+        </option>
+        <option
+          value="Intermediate"
+        >
+          Intermediate
+        </option>
+        <option
+          value="Advanced"
+        >
+          Advanced
+        </option>
+      </select>
+      <br />
+      <select
+        className="form_field"
+        name="cost"
+        onChange={[Function]}
+      >
+        <option
+          value={null}
+        >
+          Select Cost...
+        </option>
+        <option
+          value="Free"
+        >
+          Free
+        </option>
+        <option
+          value="Paid"
+        >
+          Paid
+        </option>
+      </select>
+    </div>
+    <br />
+    <div
+      className="button_row"
+    >
+      <button
+        className="get_recs_button"
+        type="submit"
+      >
+        GET RECS
+      </button>
+    </div>
+  </form>
+  <div />
+</div>
+`;

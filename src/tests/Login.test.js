@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Login from "../Login/Login";
 import { BrowserRouter as Router } from "react-router-dom";
-import { renderer } from "react-test-renderer";
-import App from "../App/App";
+import renderer from "react-test-renderer";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
 
   ReactDOM.render(
     <Router>
-      <App />
+      <Login />
     </Router>,
     div
   );
@@ -17,7 +17,13 @@ it("renders without crashing", () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-// it("renders the UI as expected", () => {
-//   const tree = renderer.create(<App />).toJSON();
-//   expect(tree).toMatchSnapshot();
-// });
+it("renders the UI as expected", () => {
+  const tree = renderer
+    .create(
+      <Router>
+        <Login />
+      </Router>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
