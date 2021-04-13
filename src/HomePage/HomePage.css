@@ -24,6 +24,7 @@
   border-radius: 5px;
   box-shadow: 2px 2px gray;
   color: white;
+  text-decoration: none;
 }
 
 .start_search_btn:hover {

@@ -75,7 +75,6 @@ option {
   margin-right: 10%;
   color: black;
 }
-/* responsive styling for various sizes */
 
 @media all and (min-width: 768px) {
   .recs_form {

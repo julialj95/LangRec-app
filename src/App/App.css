@@ -38,8 +38,6 @@ button {
   flex-grow: 2;
 }
 
-/* responsive styling for various sizes */
-
 @media all and (min-width: 768px) {
   .header {
     flex-direction: row;
