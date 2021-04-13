@@ -47,7 +47,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <h2>LOG IN</h2>
+        <h1>LOG IN</h1>
         <form className="login_form" onSubmit={this.handleSubmitJwtAuth}>
           <input
             className="login_field"
@@ -68,10 +68,12 @@ class Login extends React.Component {
           />
 
           <br />
-          <button type="submit">Log In</button>
+          <button className="login_btn" type="submit">
+            Log In
+          </button>
         </form>
         {this.state.error ? (
-          <h3>Incorrect username or password. Please try again.</h3>
+          <h2>Incorrect username or password. Please try again.</h2>
         ) : null}
       </div>
     );

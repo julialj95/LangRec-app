@@ -7,7 +7,7 @@ import "./Signup.css";
 
 class SignUp extends Component {
   static contextType = LangrecContext;
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       username: "",
@@ -52,8 +52,10 @@ class SignUp extends Component {
     const errorMessage = this.state.error.error;
     return (
       <div>
-        <h2>SIGN UP</h2>
-        <h3>Create an account to save resources to your favorites list!</h3>
+        <h1>SIGN UP</h1>
+        <h2 className="signup_instructions">
+          Create an account to save resources to your favorites list!
+        </h2>
         <form className="signup_form" onSubmit={(e) => this.handleSubmit(e)}>
           <input
             className="signup_field"
@@ -76,7 +78,9 @@ class SignUp extends Component {
           />
 
           <br />
-          <button type="submit">Create Account</button>
+          <button className="signup_btn" type="submit">
+            Create Account
+          </button>
         </form>
         {this.state.error ? <h3>{errorMessage}</h3> : null}
       </div>

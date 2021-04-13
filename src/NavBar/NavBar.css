@@ -8,11 +8,11 @@
   padding: 5px;
 }
 
-a {
+.navlink {
   text-decoration: none;
   font-family: "Nunito", sans-serif;
   flex-grow: 1;
-  color: white;
+  color: black;
 }
 
 @media all and (min-width: 600px) {

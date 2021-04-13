@@ -20,6 +20,8 @@ This fullstack application was built using:
 
 - Express
 
+- HTML
+
 - CSS
 
 ## Link to API Repo

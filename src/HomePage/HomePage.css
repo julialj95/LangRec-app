@@ -12,7 +12,8 @@
 
 .about {
   font-family: "Montserrat";
-  color: white;
+  font-weight: bold;
+  color: black;
   padding: 10px;
   margin: 10px;
 }
@@ -21,7 +22,8 @@
   padding: 7px;
   background: linear-gradient(to bottom, #219ebc, #003049 100%);
   border-radius: 5px;
-  box-shadow: 2px 2px;
+  box-shadow: 2px 2px gray;
+  color: white;
 }
 
 .start_search_btn:hover {

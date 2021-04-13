@@ -8,8 +8,6 @@ import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import config from "../config";
 import { LangrecContext } from "../LangrecContext";
-// import Tooltip from "../Tooltip/Tooltip";
-// import ReactTooltip from "react-tooltip";
 import "./ResultItem.css";
 
 class ResultItem extends React.Component {
@@ -103,19 +101,19 @@ class ResultItem extends React.Component {
     const path = this.props.match.path;
 
     return (
-      <div className="result">
+      <section className="result">
         <div className="top_block" onClick={this.displayFull}>
           <div className="labels_block">
             <div className="result_section labels_row_top">
-              <h5 className="result_label">{lang}</h5>
-              <h5 className="result_label">{lev}</h5>
-              <h5 className="result_label">{t} </h5>
+              <p className="result_label">{lang}</p>
+              <p className="result_label">{lev}</p>
+              <p className="result_label">{t} </p>
             </div>
             <div className="result_section labels_row_bottom">
-              <h5 className="result_label">COST: {this.props.cost}</h5>
-              <h5 className="result_label">
+              <p className="result_label">COST: {this.props.cost}</p>
+              <p className="result_label">
                 RATING: {this.displayStars(this.props.rating)}
-              </h5>
+              </p>
             </div>
           </div>
           <h3 className="title_row">{this.props.title}</h3>
@@ -135,8 +133,13 @@ class ResultItem extends React.Component {
 
             <div>
               <div className="result_section link_row">
-                <a href={this.props.url} target="_blank" rel="noreferrer">
-                  Link
+                <a
+                  className="result_link"
+                  href={this.props.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Visit Link
                 </a>
               </div>
               <div className="results_section">
@@ -175,7 +178,7 @@ class ResultItem extends React.Component {
                     </p>
                   </div>
                 ) : null}
-                {!this.context.isLoggedIn ? (
+                {this.context.isLoggedIn || path === "/demo" ? null : (
                   <div className="favorites_link_row">
                     <p>
                       <Link to="/signup" className="view_link">
@@ -188,12 +191,12 @@ class ResultItem extends React.Component {
                       to add this resource to your favorites!
                     </p>
                   </div>
-                ) : null}
+                )}
               </div>
             </div>
           </>
         ) : null}
-      </div>
+      </section>
     );
   }
 }

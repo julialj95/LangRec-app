@@ -18,6 +18,12 @@ p,
 button {
   text-align: center;
 }
+button {
+  background: linear-gradient(to bottom, #219ebc, #003049 100%);
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+}
 .header {
   display: flex;
   flex-direction: column;
@@ -30,10 +36,6 @@ button {
 
 .nav {
   flex-grow: 2;
-}
-
-.hero-text {
-  position: relative;
 }
 
 /* responsive styling for various sizes */

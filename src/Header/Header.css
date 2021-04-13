@@ -3,11 +3,11 @@
 .header_box > a {
   text-decoration: none;
   font-size: 25px;
-  color: white;
+  color: black;
   text-align: center;
 }
 a:hover {
-  color: darkgreen;
+  color: rgb(8, 95, 124);
 }
 
 .header_box {

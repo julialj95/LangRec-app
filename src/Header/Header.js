@@ -12,7 +12,7 @@ function Header() {
         <FontAwesomeIcon
           icon={faComments}
           size="1x"
-          style={{ color: "white", padding: "10px" }}
+          style={{ color: "black", padding: "10px" }}
         />
         LangRec
       </Link>

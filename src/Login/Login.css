@@ -1,16 +1,37 @@
 .login_form {
-  color: white;
+  color: black;
   text-align: center;
 }
 
 .login_field {
-  border: solid 1px white;
+  border: solid 1px black;
   border-radius: 5px;
   background: transparent;
   text-align: center;
   padding: 4px;
   margin: 5px;
-  font-size: 15px;
+  font-size: 14px;
   font-family: "Nunito";
-  color: white;
+  color: black;
+}
+
+@media all and (min-width: 768px) {
+  .login_field {
+    font-size: 16px;
+  }
+
+  .login_btn {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+}
+
+@media all and (min-width: 1000px) {
+  .login_field {
+    font-size: 25px;
+  }
+  .login_btn {
+    margin-top: 14px;
+    font-size: 20px;
+  }
 }

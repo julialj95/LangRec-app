@@ -1,13 +1,7 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import ResultItem from "../ResultItem/ResultItem";
-// import TokenService from "../services/token-service";
 import config from "../config";
 import { LangrecContext } from "../LangrecContext";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faGlobeAmericas } from "@fortawesome/free-solid-svg-icons";
-// import { faHeart } from "@fortawesome/free-regular-svg-icons";
-// import { faHeart } from "@fortawesome/free-solid-svg-icons"
 import "./RecsPage.css";
 
 class RecsPage extends Component {
@@ -86,12 +80,12 @@ class RecsPage extends Component {
   render() {
     const length = this.context.recommendedResources.length;
     return (
-      <div className="recs_block">
-        <h2>Get Recommendations</h2>
-        <h3>
-          Enter your requirements to view the resources that best fit your
-          needs!
-        </h3>
+      <main className="recs_block">
+        <h1>GET RECOMMENDATIONS</h1>
+        <h2 className="instructions">
+          Enter your desired language, level, resource type and cost to view the
+          resources that best fit your needs!
+        </h2>
 
         <form onSubmit={(e) => this.getRecommendations(e)}>
           <div className="recs_form">
@@ -160,17 +154,17 @@ class RecsPage extends Component {
           </div>
         </form>
 
-        <div>
+        <section>
           {this.state.error ? (
             <h2>{this.state.error}</h2>
           ) : length > 0 ? (
             <div>
-              <h1 className="results_header">RESULTS</h1>
-              {this.displayResults()}
+              <h2 className="results_header">YOUR RECOMMENDATIONS</h2>
+              <div className="results_display">{this.displayResults()}</div>
             </div>
           ) : null}
-        </div>
-      </div>
+        </section>
+      </main>
     );
   }
 }

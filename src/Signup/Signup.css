@@ -1,20 +1,54 @@
 .signup_form {
   text-align: center;
-  color: white;
+  color: black;
 }
 .signup_field {
-  border: solid 1px white;
+  border: solid 1px black;
   border-radius: 5px;
   background: transparent;
   text-align: center;
   padding: 4px;
   margin: 5px;
-  font-size: 15px;
+  font-size: 14px;
   font-family: "Nunito";
-  color: white;
+  color: black;
 }
 
 ::placeholder {
-  color: white;
+  color: black;
   opacity: 1;
+}
+
+.signup_instructions {
+  color: black;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.signup_btn {
+  margin-top: 8px;
+  font-size: 14px;
+  padding: 5px;
+  font-family: "Nunito";
+}
+
+@media all and (min-width: 768px) {
+  .signup_field {
+    font-size: 16px;
+  }
+
+  .signup_btn {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+}
+
+@media all and (min-width: 1000px) {
+  .signup_field {
+    font-size: 25px;
+  }
+  .signup_btn {
+    margin-top: 14px;
+    font-size: 20px;
+  }
 }

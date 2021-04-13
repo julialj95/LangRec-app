@@ -16,9 +16,10 @@ class NavBar extends Component {
   renderLoggedInDisplay() {
     return (
       <>
-        <Link to="/saved-resources">MY SAVED RESOURCES</Link>
-        {/* <Link to="/share">Submit Resources</Link> */}
-        <Link to="/" onClick={this.handleLogoutClick}>
+        <Link className="navlink" to="/saved-resources">
+          MY SAVED RESOURCES
+        </Link>
+        <Link className="navlink" to="/" onClick={this.handleLogoutClick}>
           LOGOUT
         </Link>
       </>
@@ -28,8 +29,15 @@ class NavBar extends Component {
   renderLoggedOutDisplay() {
     return (
       <>
-        <Link to="/signup">SIGN UP</Link>
-        <Link to="/login">LOG IN</Link>
+        <Link className="navlink" to="/signup">
+          SIGN UP
+        </Link>
+        <Link className="navlink" to="/login">
+          LOG IN
+        </Link>
+        <Link className="navlink" to="/demo">
+          DEMO
+        </Link>
       </>
     );
   }
@@ -38,8 +46,12 @@ class NavBar extends Component {
     return (
       <nav>
         <ul className="navbar">
-          <Link to="/">HOME</Link>
-          <Link to="/recs">GET RECOMMENDATIONS</Link>
+          <Link className="navlink" to="/">
+            HOME
+          </Link>
+          <Link className="navlink" to="/recs">
+            GET RECOMMENDATIONS
+          </Link>
           {this.context.isLoggedIn
             ? this.renderLoggedInDisplay()
             : this.renderLoggedOutDisplay()}

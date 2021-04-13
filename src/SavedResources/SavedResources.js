@@ -42,7 +42,7 @@ class SavedResources extends Component {
     if (this.context.savedResources.length === 0) {
       return (
         <div>
-          <h3>You have no saved resources.</h3>
+          <h2>You have no saved resources.</h2>
           <h3>
             Search through <Link to="/recs">resource recommendations</Link> and
             find resources to save!
@@ -76,7 +76,7 @@ class SavedResources extends Component {
   render() {
     return (
       <>
-        <h2>SAVED RESOURCES</h2>
+        <h1>SAVED RESOURCES</h1>
         <div>{this.displayResults()}</div>
       </>
     );
