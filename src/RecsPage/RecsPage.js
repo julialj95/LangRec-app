@@ -83,8 +83,8 @@ class RecsPage extends Component {
       <main className="recs_block">
         <h1>GET RECOMMENDATIONS</h1>
         <h2 className="instructions">
-          Enter your desired language, level, resource type and cost to view the
-          resources that best fit your needs!
+          Enter your desired language, type of resource, level and cost
+          preference to view the resources that best fit your needs!
         </h2>
 
         <form onSubmit={(e) => this.getRecommendations(e)}>
@@ -159,7 +159,7 @@ class RecsPage extends Component {
             <h2>{this.state.error}</h2>
           ) : length > 0 ? (
             <div>
-              <h2 className="results_header">YOUR RECOMMENDATIONS</h2>
+              <h2 className="results_header">RECOMMENDATIONS</h2>
               <div className="results_display">{this.displayResults()}</div>
             </div>
           ) : null}

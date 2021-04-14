@@ -8,7 +8,6 @@ import Login from "../Login/Login";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import SavedResources from "../SavedResources/SavedResources";
-import Demo from "../Demo/Demo";
 import { LangrecContext } from "../LangrecContext";
 
 class App extends React.Component {
@@ -99,7 +98,6 @@ class App extends React.Component {
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/saved-resources" component={SavedResources} />
-            <Route path="/demo" component={Demo} />
           </Switch>
         </LangrecContext.Provider>
       </div>

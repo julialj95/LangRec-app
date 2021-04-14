@@ -35,9 +35,6 @@ class NavBar extends Component {
         <Link className="navlink" to="/login">
           LOG IN
         </Link>
-        <Link className="navlink" to="/demo">
-          DEMO
-        </Link>
       </>
     );
   }

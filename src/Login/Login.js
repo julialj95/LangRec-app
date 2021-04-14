@@ -48,6 +48,13 @@ class Login extends React.Component {
     return (
       <div>
         <h1>LOG IN</h1>
+        <h2 className="demo_access">
+          *To access demo account, use:
+          <br />
+          Username: demouser
+          <br />
+          Password: demopassword
+        </h2>
         <form className="login_form" onSubmit={this.handleSubmitJwtAuth}>
           <input
             className="login_field"

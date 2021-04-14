@@ -23,12 +23,35 @@ function HomePage() {
       <p className="about">
         Head to the "Get Recommendations" page to select your desired language,
         the type of content you prefer, level of learning, and cost options and
-        get started finding material! Happy learning!
+        get started finding material!
       </p>
-      <br />
+
       <div className="button_row">
         <Link className="start_search_btn" to="/recs">
           START SEARCHING
+        </Link>
+      </div>
+      <br />
+      <h2 className="about">Try a Demo</h2>
+      <p className="about">
+        Feel free to log in to a demo account to try saving resources. To
+        access, use: <br />
+        <br /> Username: demouser
+        <br />
+        Password: demopassword
+        <br />
+        <br />
+        When you are ready to create your own account, simply click logout and
+        then visit the{" "}
+        <Link className="no_underline" to="/signup">
+          signup page
+        </Link>
+        ! Happy learning!
+      </p>
+      <br />
+      <div className="button_row">
+        <Link className="start_search_btn" to="/login">
+          GO TO LOGIN
         </Link>
       </div>
     </main>

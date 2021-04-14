@@ -178,7 +178,7 @@ class ResultItem extends React.Component {
                     </p>
                   </div>
                 ) : null}
-                {this.context.isLoggedIn || path === "/demo" ? null : (
+                {!this.context.isLoggedIn ? (
                   <div className="favorites_link_row">
                     <p>
                       <Link to="/signup" className="view_link">
@@ -191,7 +191,7 @@ class ResultItem extends React.Component {
                       to add this resource to your favorites!
                     </p>
                   </div>
-                )}
+                ) : null}
               </div>
             </div>
           </>

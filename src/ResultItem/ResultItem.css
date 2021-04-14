@@ -157,8 +157,6 @@ p {
   font-size: 16px;
 }
 
-/* responsive styling for various sizes */
-
 @media all and (min-width: 600px) {
   .labels_block {
     display: flex;

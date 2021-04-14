@@ -30,3 +30,8 @@
 .start_search_btn:hover {
   color: #ff5c8a;
 }
+
+.no_underline {
+  text-decoration: none;
+  color: #044e76;
+}
