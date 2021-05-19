@@ -12,6 +12,7 @@ const LangrecContext = React.createContext({
   savedResources: [],
   recommendedResources: [],
   handleSavedResourcesOnLogout: () => {},
+  addSubmittedResource: () => {},
 });
 
 export { LangrecContext };

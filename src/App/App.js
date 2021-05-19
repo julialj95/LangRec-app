@@ -35,6 +35,14 @@ class App extends React.Component {
     });
   };
 
+  addSubmittedResource = (newResource) => {
+    this.setState((prevState) => {
+      return {
+        submittedResources: [...prevState.submittedResources, newResource],
+      };
+    });
+  };
+
   getSavedResources = (resources) => {
     const resourceIds = resources.map((resource) => resource.id);
     this.setState({ savedResources: resources, savedResourceIds: resourceIds });
@@ -82,6 +90,7 @@ class App extends React.Component {
             handleRecommendedResources: this.handleRecommendedResources,
             recommendedResources: this.state.recommendedResources,
             handleSavedResourcesOnLogout: this.handleSavedResourcesOnLogout,
+            addSubmittedResource: this.addSubmittedResource,
           }}
         >
           <div className="header">
