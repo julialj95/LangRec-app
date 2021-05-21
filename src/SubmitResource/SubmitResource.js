@@ -7,7 +7,6 @@ class SubmitResource extends React.Component {
   constructor() {
     super();
     this.state = {
-      user_id: "",
       title: "",
       image_link: "",
       language: "",
@@ -17,16 +16,20 @@ class SubmitResource extends React.Component {
       url: "",
       cost: "",
       description: "",
+      error: "",
     };
   }
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
-      error: null,
+      error: "",
     });
   };
-  submitResourceRequest = () => {
+
+  submitResourceRequest = (e) => {
+    e.preventDefault();
     const {
       title,
       image_link,
@@ -50,7 +53,7 @@ class SubmitResource extends React.Component {
       description,
     };
 
-    fetch(config.API_BASE_URL + `/submit`, {
+    fetch(config.API_BASE_URL, {
       method: "POST",
       body: JSON.stringify(newResource),
       headers: {
@@ -66,12 +69,12 @@ class SubmitResource extends React.Component {
           res.json();
         }
       })
-      .catch((error) => console.error({ error }));
+      .catch((error) => this.setState({ error }));
   };
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={(e) => this.submitResourceRequest(e)}>
           <label htmlFor="title" />
           <input type="text" name="title" placeholder="Enter resource title" />
           <label htmlFor="image_link" />
@@ -120,6 +123,22 @@ class SubmitResource extends React.Component {
           </select>
 
           <br />
+          <label htmlFor="rating" />
+          <select
+            className="form_field"
+            name="rating"
+            onChange={(e) => this.handleChange(e)}
+          >
+            <option value={null}>Select rating...</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+          <br />
+          <label htmlFor="url" />
+          <input type="text" name="url" placeholder="Resource URL" />
           <select
             className="form_field"
             name="cost"
@@ -129,7 +148,18 @@ class SubmitResource extends React.Component {
             <option value="Free">Free</option>
             <option value="Paid">Paid</option>
           </select>
+          <br />
+          <label htmlFor="description">
+            <input
+              type="text"
+              name="description"
+              placeholder="What should other users know about this resource?"
+            />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
         </form>
+        {this.state.error === "" ? null : <p>{this.state.error}</p>}
       </div>
     );
   }
