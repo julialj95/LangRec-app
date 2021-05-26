@@ -73,15 +73,28 @@ class SubmitResource extends React.Component {
   };
   render() {
     return (
-      <div>
+      <main>
+        <h2>Share a resource that you have found helpful!</h2>
         <form onSubmit={(e) => this.submitResourceRequest(e)}>
           <label htmlFor="title" />
-          <input type="text" name="title" placeholder="Enter resource title" />
+          <input
+            className="form_field block"
+            type="text"
+            name="title"
+            placeholder="Enter resource title"
+          />
+          <br />
           <label htmlFor="image_link" />
-          <input type="text" name="image_link" placeholder="Add image link" />
+          <input
+            className="form_field block"
+            type="text"
+            name="image_link"
+            placeholder="Enter image link"
+          />
+          <br />
           <label htmlFor="language" />
           <select
-            className="form_field"
+            className="form_field block"
             name="language"
             onChange={(e) => this.handleChange(e)}
           >
@@ -98,9 +111,9 @@ class SubmitResource extends React.Component {
             <option value="Afrikaans">Afrikaans</option>
             <option value="Portuguese">Portuguese</option>
           </select>
-
+          <br />
           <select
-            className="form_field"
+            className="form_field block"
             name="type"
             onChange={(e) => this.handleChange(e)}
           >
@@ -111,8 +124,9 @@ class SubmitResource extends React.Component {
             <option value="Website">Website</option>
             <option value="other">Other</option>
           </select>
+          <br />
           <select
-            className="form_field"
+            className="form_field block"
             name="level"
             onChange={(e) => this.handleChange(e)}
           >
@@ -125,7 +139,7 @@ class SubmitResource extends React.Component {
           <br />
           <label htmlFor="rating" />
           <select
-            className="form_field"
+            className="form_field block"
             name="rating"
             onChange={(e) => this.handleChange(e)}
           >
@@ -138,9 +152,15 @@ class SubmitResource extends React.Component {
           </select>
           <br />
           <label htmlFor="url" />
-          <input type="text" name="url" placeholder="Resource URL" />
+          <input
+            className="form_field block"
+            type="text"
+            name="url"
+            placeholder="Enter resource URL"
+          />
+          <br />
           <select
-            className="form_field"
+            className="form_field block"
             name="cost"
             onChange={(e) => this.handleChange(e)}
           >
@@ -150,8 +170,8 @@ class SubmitResource extends React.Component {
           </select>
           <br />
           <label htmlFor="description">
-            <input
-              type="text"
+            <textarea
+              className="form_textarea"
               name="description"
               placeholder="What should other users know about this resource?"
             />
@@ -160,7 +180,7 @@ class SubmitResource extends React.Component {
           <button type="submit">Submit</button>
         </form>
         {this.state.error === "" ? null : <p>{this.state.error}</p>}
-      </div>
+      </main>
     );
   }
 }

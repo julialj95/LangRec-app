@@ -20,7 +20,7 @@ class NavBar extends Component {
           MY SAVED RESOURCES
         </Link>
         <Link className="navlink" to="/submit">
-          Submit a Resource
+          SUBMIT A RESOURCE
         </Link>
         <Link className="navlink" to="/" onClick={this.handleLogoutClick}>
           LOGOUT
