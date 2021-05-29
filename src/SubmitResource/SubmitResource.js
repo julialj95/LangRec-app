@@ -1,9 +1,11 @@
 import React from "react";
 import config from "../config";
 import TokenService from "../services/token-service";
+import { LangrecContext } from "../LangrecContext";
 import "./SubmitResource.css";
 
 class SubmitResource extends React.Component {
+  static contextType = LangrecContext;
   constructor() {
     super();
     this.state = {
@@ -29,6 +31,7 @@ class SubmitResource extends React.Component {
   };
 
   submitResourceRequest = (e) => {
+    console.log("this.state", this.state);
     e.preventDefault();
     const {
       title,
@@ -53,12 +56,12 @@ class SubmitResource extends React.Component {
       description,
     };
 
-    fetch(config.API_BASE_URL, {
+    fetch(`${config.API_BASE_URL}/resources`, {
       method: "POST",
       body: JSON.stringify(newResource),
       headers: {
         "content-type": "application/json",
-        authorization: TokenService.getAuthToken(),
+        Authorization: "Bearer " + TokenService.getAuthToken(),
       },
     })
       .then((res) => {
@@ -82,6 +85,7 @@ class SubmitResource extends React.Component {
             type="text"
             name="title"
             placeholder="Enter resource title"
+            onChange={(e) => this.handleChange(e)}
           />
           <br />
           <label htmlFor="image_link" />
@@ -90,6 +94,7 @@ class SubmitResource extends React.Component {
             type="text"
             name="image_link"
             placeholder="Enter image link"
+            onChange={(e) => this.handleChange(e)}
           />
           <br />
           <label htmlFor="language" />
@@ -157,6 +162,7 @@ class SubmitResource extends React.Component {
             type="text"
             name="url"
             placeholder="Enter resource URL"
+            onChange={(e) => this.handleChange(e)}
           />
           <br />
           <select
@@ -174,12 +180,13 @@ class SubmitResource extends React.Component {
               className="form_textarea"
               name="description"
               placeholder="What should other users know about this resource?"
+              onChange={(e) => this.handleChange(e)}
             />
           </label>
           <br />
           <button type="submit">Submit</button>
         </form>
-        {this.state.error === "" ? null : <p>{this.state.error}</p>}
+        {this.state.error === "" ? null : <p>{this.state.error.message}</p>}
       </main>
     );
   }

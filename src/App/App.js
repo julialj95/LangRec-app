@@ -20,6 +20,7 @@ class App extends React.Component {
       savedResourceIds: [],
       recommendedResources: [],
       savedResources: [],
+      submittedResources: [],
     };
   }
 
