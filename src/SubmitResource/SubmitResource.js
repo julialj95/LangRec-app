@@ -65,12 +65,11 @@ class SubmitResource extends React.Component {
       },
     })
       .then((res) => {
-        if (!res.ok) {
-          res.json().then((e) => Promise.reject(e));
-        } else {
-          this.context.addSubmittedResource(newResource);
-          res.json();
-        }
+        if (!res.ok) res.json().then((error) => Promise.reject(error));
+        res.json();
+      })
+      .then(() => {
+        this.context.addSubmittedResource(newResource);
       })
       .catch((error) => this.setState({ error }));
   };

@@ -38,6 +38,7 @@ class App extends React.Component {
   };
 
   addSubmittedResource = (newResource) => {
+    console.log(newResource);
     this.setState((prevState) => {
       return {
         submittedResources: [...prevState.submittedResources, newResource],
