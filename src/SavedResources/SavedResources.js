@@ -14,7 +14,7 @@ class SavedResources extends Component {
     };
   }
 
-  displayResults = () => {
+  displayResources = () => {
     const results = this.context.savedResources.map((result) => {
       const isFavorited =
         this.context.savedResourceIds.filter((resource) => {
@@ -77,7 +77,7 @@ class SavedResources extends Component {
     return (
       <>
         <h1>SAVED RESOURCES</h1>
-        <div>{this.displayResults()}</div>
+        <div>{this.displayResources()}</div>
       </>
     );
   }

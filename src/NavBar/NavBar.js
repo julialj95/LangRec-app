@@ -22,6 +22,9 @@ class NavBar extends Component {
         <Link className="navlink" to="/submit">
           SUBMIT A RESOURCE
         </Link>
+        <Link className="navlink" to="/my-resources">
+          MY SUBMITTED RESOURCES
+        </Link>
         <Link className="navlink" to="/" onClick={this.handleLogoutClick}>
           LOGOUT
         </Link>

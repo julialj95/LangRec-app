@@ -9,6 +9,7 @@ import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import SavedResources from "../SavedResources/SavedResources";
 import SubmitResource from "../SubmitResource/SubmitResource";
+import SubmittedResources from "../SubmittedResources/SubmittedResources";
 import { LangrecContext } from "../LangrecContext";
 
 class App extends React.Component {
@@ -110,6 +111,7 @@ class App extends React.Component {
             <Route path="/login" component={Login} />
             <Route path="/saved-resources" component={SavedResources} />
             <Route path="/submit" component={SubmitResource} />
+            <Route path="/my-resources" component={SubmittedResources} />
           </Switch>
         </LangrecContext.Provider>
       </div>
